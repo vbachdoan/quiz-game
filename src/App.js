@@ -92,13 +92,13 @@ export default class App extends React.Component {
             <div id='wrap-select-level' style={{ display: `${this.state.display}` }}>
 
               {
-                (this.state.totalAnswered != 0 && this.state.status == true) &&
+                (this.state.totalAnswered !== 0 && this.state.status === true) &&
                 <audio id="Player" autoPlay={true}>
                   <source src={"./assets/audios/wow.wav"} type="audio/mp3"></source>
                 </audio>
               }
               {
-                (this.state.totalAnswered != 0 && this.state.status == false) &&
+                (this.state.totalAnswered !== 0 && this.state.status === false) &&
                 <audio id="Player" autoPlay={true}>
                   <source src={"./assets/audios/fail.wav"} type="audio/mp3"></source>
                 </audio>
