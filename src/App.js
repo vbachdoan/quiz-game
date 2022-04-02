@@ -8,7 +8,7 @@ export default class App extends React.Component {
     this.state = {
       score: 0,
       isOpenPopUp: false,
-      zIndex: 1,
+      display: "block",
       ques: [
         ["#fff", "#000", false],
         ["#fff", "#000", false],
@@ -27,7 +27,7 @@ export default class App extends React.Component {
     this.setState({
       option: option,
       isOpenPopUp: true,
-      zIndex: -1
+      display: "none",
     })
   }
 
@@ -35,7 +35,7 @@ export default class App extends React.Component {
     let tempTotalAnswer = this.state.totalAnswered + 1
     this.setState({
       isOpenPopUp: false,
-      zIndex: 1,
+      display: "block",
       totalAnswered: tempTotalAnswer,
     })
   }
@@ -89,11 +89,25 @@ export default class App extends React.Component {
           {
             // check if done ques or not
             (this.state.totalAnswered < 6) &&
-            <div id='wrap-select-level' style={{ zIndex: `${this.state.zIndex}` }}>
+            <div id='wrap-select-level' style={{ display: `${this.state.display}` }}>
+
+              {
+                (this.state.totalAnswered != 0 && this.state.status == true) &&
+                <audio id="Player" autoPlay={true}>
+                  <source src={"./assets/audios/wow.wav"} type="audio/mp3"></source>
+                </audio>
+              }
+              {
+                (this.state.totalAnswered != 0 && this.state.status == false) &&
+                <audio id="Player" autoPlay={true}>
+                  <source src={"./assets/audios/fail.wav"} type="audio/mp3"></source>
+                </audio>
+              }
+
               <h3>Select level</h3>
               <div id="levels">
-                <div onClick={() => this.openPopUp(0)} className="level" style={{ backgroundColor: this.state.ques[0][0], color: this.state.ques[0][1] }}>
-                  <div className="decor-level" >
+                <div className="level" style={{ backgroundColor: this.state.ques[0][0], color: this.state.ques[0][1] }}>
+                  <div onClick={() => this.openPopUp(0)} className="decor-level" >
                     Level 1
                   </div>
                   {
@@ -102,8 +116,8 @@ export default class App extends React.Component {
                   }
                 </div>
 
-                <div onClick={() => this.openPopUp(1)} className="level" style={{ backgroundColor: this.state.ques[1][0], color: this.state.ques[1][1] }}>
-                  <div className="decor-level" >
+                <div className="level" style={{ backgroundColor: this.state.ques[1][0], color: this.state.ques[1][1] }}>
+                  <div onClick={() => this.openPopUp(1)} className="decor-level" >
                     Level 2
                   </div>
                   {
@@ -112,8 +126,8 @@ export default class App extends React.Component {
                   }
                 </div>
 
-                <div onClick={() => this.openPopUp(2)} className="level" style={{ backgroundColor: this.state.ques[2][0], color: this.state.ques[2][1] }}>
-                  <div className="decor-level" >
+                <div className="level" style={{ backgroundColor: this.state.ques[2][0], color: this.state.ques[2][1] }}>
+                  <div onClick={() => this.openPopUp(2)} className="decor-level" >
                     Level 3
                   </div>
                   {
@@ -122,8 +136,8 @@ export default class App extends React.Component {
                   }
                 </div>
 
-                <div onClick={() => this.openPopUp(3)} className="level" style={{ backgroundColor: this.state.ques[3][0], color: this.state.ques[3][1] }}>
-                  <div className="decor-level" >
+                <div className="level" style={{ backgroundColor: this.state.ques[3][0], color: this.state.ques[3][1] }}>
+                  <div onClick={() => this.openPopUp(3)} className="decor-level" >
                     Level 4
                   </div>
                   {
@@ -132,8 +146,8 @@ export default class App extends React.Component {
                   }
                 </div>
 
-                <div onClick={() => this.openPopUp(4)} className="level" style={{ backgroundColor: this.state.ques[4][0], color: this.state.ques[4][1] }}>
-                  <div className="decor-level" >
+                <div className="level" style={{ backgroundColor: this.state.ques[4][0], color: this.state.ques[4][1] }}>
+                  <div onClick={() => this.openPopUp(4)} className="decor-level" >
                     Level 5
                   </div>
                   {
@@ -142,8 +156,8 @@ export default class App extends React.Component {
                   }
                 </div>
 
-                <div onClick={() => this.openPopUp(5)} className="level" style={{ backgroundColor: this.state.ques[5][0], color: this.state.ques[5][1] }}>
-                  <div className="decor-level" >
+                <div className="level" style={{ backgroundColor: this.state.ques[5][0], color: this.state.ques[5][1] }}>
+                  <div onClick={() => this.openPopUp(5)} className="decor-level" >
                     Level 6
                   </div>
                   {
@@ -169,19 +183,6 @@ export default class App extends React.Component {
               <p>Result: {this.state.totalTrueAnswer}/6</p>
               <p>Time taken: {this.state.totalTime} seconds</p>
             </div>
-          }
-
-          {
-            (this.state.totalAnswered != 0 && this.state.status == true) &&
-            <audio id="Player" autoPlay={true}>
-              <source src={"./assets/audios/wow.wav"} type="audio/mp3"></source>
-            </audio>
-          }
-          {
-            (this.state.totalAnswered != 0 && this.state.status == false) &&
-            <audio id="Player" autoPlay={true}>
-              <source src={"./assets/audios/fail.wav"} type="audio/mp3"></source>
-            </audio>
           }
 
         </div>

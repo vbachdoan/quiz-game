@@ -78,14 +78,15 @@ code {
   border-radius: 3px;
   cursor: pointer;
   transition: .1s ease-in-out;
-  padding: 20px;
   position: relative;
 }
 .level:hover{
   box-shadow: 2px 2px 0px 2px #000000;
   transform: translate(-2px, -2px);
 }
-
+.decor-level{
+  padding: 20px;
+}
 #score{
   position: absolute;
   bottom: 40px;
